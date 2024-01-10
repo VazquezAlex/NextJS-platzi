@@ -1,5 +1,11 @@
+"use client";
+
 // Core imports.
+import { useState } from 'react';
 import Image from 'next/image';
+
+// Third-party imports.
+import classNames from 'classnames/bind';
 
 // Local imports.
 import styles from './Description.module.sass';
@@ -8,21 +14,39 @@ const PLACEHOLDER_IMAGE = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4g
 
 const Description = (): JSX.Element => {
 
+    const [hasBorder, setBorder] = useState(false);
+
+    // Classnames.
+    const ctx = classNames.bind(styles);
+
+    const buttonStyles = ctx('Description__button', {
+        'Description__button--border': hasBorder,
+
+    })
+
+
+    const handleClick = () => setBorder(prev => !prev);
+
     return (
         <section className = { styles.Description }>
-            <div className = { styles.Description__imageContainer }>
-                <Image 
-                    alt="Description" 
-                    src="/images/description.jpeg"
-                    fill // Occupies all the space of its container, container needs to be relative.
-                    placeholder = 'blur' // Displays a 'skeleton' showing the image is still loading.
-                    blurDataURL = { PLACEHOLDER_IMAGE }
-                    // height = { 300 }
-                    // width = { 500 }
-                    // priority = { false } // Deactivate lazy loading with false.
-                    // quality = { 100 }    // Changes the quality of the image, the default is 75 (%).
-                />
-            </div>
+            <button 
+                className = { buttonStyles }
+                onClick = { handleClick }
+            >
+                <div className = { styles.Description__imageContainer }>
+                    <Image 
+                        alt="Description" 
+                        src="/images/description.jpeg"
+                        fill // Occupies all the space of its container, container needs to be relative.
+                        placeholder = 'blur' // Displays a 'skeleton' showing the image is still loading.
+                        blurDataURL = { PLACEHOLDER_IMAGE }
+                        // height = { 300 }
+                        // width = { 500 }
+                        // priority = { false } // Deactivate lazy loading with false.
+                        // quality = { 100 }    // Changes the quality of the image, the default is 75 (%).
+                    />
+                </div>
+            </button>
             <div className={styles.Description__text}>
                 <h2>Bring the future today</h2>
                 <p>Future World: Your Gateway to Tomorrow&apos;s Tech! Dive into a world of cutting-edge gadgets and gear. Stay ahead of the curve and redefine your digital lifestyle with us.</p>
