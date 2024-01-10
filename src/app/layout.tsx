@@ -1,6 +1,10 @@
+// Third-party imports.
 import { Inter } from 'next/font/google'
+
+// Local imports
 import { Header } from 'app/components/shared/Header';
 import { Footer } from 'app/components/shared/Footer';
+import 'app/sass/globals.sass';
 
 const inter = Inter({ subsets: ['latin'] })
 
