@@ -1,6 +1,6 @@
 
 // Local imports.
-import styles from './Hero.module.css';
+import styles from './Hero.module.sass';
 
 const Hero = (): JSX.Element => {
 
